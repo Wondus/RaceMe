@@ -1,0 +1,47 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:Client.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Client.Views.ProfileView"
+        x:DataType="viewModels:ProfileViewModel">
+            
+    <Border Padding="20">
+        <Grid ColumnDefinitions="1*,1*">
+            <!-- Profile Photo -->
+            <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="20">
+                <Image Source="{Binding UserImageBitmap}" Width="300" Height="350"/>
+                <Button Content="Upload Photo" Click="UploadPhoto_Click" Width="200"/>
+                
+                <!-- Profile Photo -->
+                <TextBlock Text="Bio" FontWeight="Bold" Margin="0,10,0,0"/>
+                <ScrollViewer Height="150" Width="300">
+                    <TextBox Text="{Binding Bio}"
+                             AcceptsReturn="True"
+                             TextWrapping="Wrap"
+                             MinHeight="150"/>
+                </ScrollViewer>
+                <Button Content="Save Bio" Command="{Binding EditBioCommand}" Width="200"/>
+            </StackPanel>
+
+
+            <Grid Grid.Column="1" RowDefinitions="Auto,*,Auto" VerticalAlignment="Center">
+                <!-- Username -->
+                <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" Spacing="10">
+                    <TextBox Watermark="New Username" Text="{Binding NewUsername}" Width="200"/>
+                    <Button Content="Apply username changes" Command="{Binding ChangeUsernameCommand}" Width="200"/>
+                </StackPanel>
+
+                <Grid Grid.Row="1"/>
+
+                <!-- Password -->
+                <StackPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Spacing="10">
+                    <TextBox Watermark="New Password" PasswordChar="*" Text="{Binding NewPassword}" Width="200"/>
+                    <TextBox Watermark="New Password Again" PasswordChar="*" Text="{Binding NewPasswordAgain}" Width="200"/>
+                    <Button Content="Apply password changes" Command="{Binding ChangePasswordCommand}" Width="200"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>

@@ -1,0 +1,36 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:Client.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="88" d:DesignHeight="720"
+        x:Class="Client.Views.Navbar"
+        x:DataType="viewModels:MainWindowViewModel">
+    <StackPanel Width="80" Background="#325D79">
+        <Button Command="{Binding ShowFeedCommand}" HorizontalAlignment="Center" Width="70" Margin="0, 23, 0, 0" Background="#9BD7D1">
+            <Image Source="/Assets/racing-flag.png"
+                           Width="54" Height="54" Stretch="Uniform"/>
+        </Button>
+        <Button Command="{Binding ShowProfileCommand}" HorizontalAlignment="Center" Width="70" Margin="0, 23, 0, 0" Background="#9BD7D1">
+            <Image Source="/Assets/user.png"
+                   Width="54" Height="54" Stretch="Uniform"/>
+        </Button>
+        <Button Command="{Binding ShowSettingsCommand}" HorizontalAlignment="Center" Width="70" Margin="0, 23, 0, 0" Background="#9BD7D1">
+            <Image Source="/Assets/settings.png"
+                   Width="54" Height="54" Stretch="Uniform"/>
+        </Button>
+        
+        <Button Command="{Binding ShowAdminCommand}" IsVisible="{Binding IsAdmin}" HorizontalAlignment="Center" Width="70" Margin="0, 23, 0, 0" Background="#FFD700">
+            <Image Source="/Assets/admin.png" Width="54" Height="54" Stretch="Uniform"/>
+        </Button>
+        
+        
+        <TextBlock HorizontalAlignment="Center" Margin="0, 180, 0, 0">Race Me
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <RotateTransform Angle="-90"/>
+                </TransformGroup>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+    </StackPanel>
+</UserControl>

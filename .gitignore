@@ -1,0 +1,14 @@
+# Build artifacts
+bin/
+obj/
+
+# IDE files
+.vscode/
+*.suo
+*.user
+*.csproj.user
+*.sln.docstates
+
+# Logs and temp
+*.log
+*.tmp

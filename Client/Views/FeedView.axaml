@@ -1,0 +1,118 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:Client.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Client.Views.FeedView"
+             x:DataType="viewModels:FeedViewModel">
+    <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="*" Margin="20">
+        
+        <!-- Dislike -->
+        <Button Grid.Column="0"
+                Command="{Binding DislikeCommand}"
+                FontSize="32"
+                Background="Transparent"
+                BorderThickness="0"
+                Padding="0"
+                VerticalAlignment="Center"
+                Margin="0,0,10,0"
+                CornerRadius="40">
+            <Border CornerRadius="40" ClipToBounds="True">
+            <Image Source="/Assets/dislike.png"
+                   Width="130" Height="130" Stretch="Uniform"/>
+            </Border>
+        </Button>
+        
+        
+        <!-- Card -->
+        <Border Grid.Column="1"
+                CornerRadius="16"
+                Padding="20"
+                Background="#FFF"
+                Effect="{DynamicResource ShadowEffect}"
+                MaxWidth="400"
+                HorizontalAlignment="Center">
+            <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="*">
+                <!-- Photo -->
+                <Image Source="{Binding UserImageBitmap}"
+                       Width="350"
+                       Height="350"
+                       Stretch="UniformToFill"
+                       Grid.Row="0"/>
+
+                <!-- Name -->
+                <TextBlock Text="{Binding Username}"
+                           FontSize="28"
+                           FontWeight="Bold"
+                           Margin="0,10,0,0"
+                           Grid.Row="1"
+                           TextAlignment="Center"/>
+
+                <!-- Bio -->
+                <TextBlock Text="{Binding Bio}"
+                           FontSize="14"
+                           Opacity="0.8"
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"
+                           MaxHeight="100"
+                           Margin="0,5,0,0"
+                           Grid.Row="2"/>
+            </Grid>
+        </Border>
+        
+        <!-- Report -->
+        <Button Grid.Column="2"
+                Command="{Binding Report}"
+                FontSize="32"
+                Background="Transparent"
+                BorderThickness="0"
+                Padding="0"
+                VerticalAlignment="Top"
+                Margin="10,0,0,0"
+                CornerRadius="40">
+            <Border CornerRadius="40" ClipToBounds="True">
+                <Image Source="/Assets/exclamation.png"
+                       Width="100" Height="100" Stretch="Uniform"/>
+            </Border>
+        </Button>
+        
+        <!-- Like -->
+        <Button Grid.Column="2"
+                Click="LikeClick"
+                FontSize="32"
+                Background="Transparent"
+                BorderThickness="0"
+                Padding="0"
+                VerticalAlignment="Center"
+                Margin="10,0,0,0"
+                CornerRadius="40">
+            <Border CornerRadius="40" ClipToBounds="True">
+                <Image Source="/Assets/like.png"
+                    Width="130" Height="130" Stretch="Uniform"/>
+            </Border>
+        </Button>
+        
+        <!-- Match Popup -->
+        <Popup IsOpen="{Binding IsMatchPopupOpen}" Placement="Center">
+            <Border Background="White" BorderBrush="Gray" BorderThickness="2" Padding="16" CornerRadius="12">
+                <StackPanel Spacing="8" Width="400" Height="300">
+                    <TextBlock FontSize="20"
+                               FontWeight="Bold"
+                               HorizontalAlignment="Center"
+                               TextAlignment="Center">
+                        <Run Text="It's a match! Contact this person to"/>
+                        <LineBreak/>
+                        <Run Text="race, because better matches (or chat)"/>
+                        <LineBreak/>
+                        <Run Text="have not been implemented yet. :)"/>
+                    </TextBlock>
+                    <TextBlock Text="{Binding MatchUsername}" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding MatchEmail}" TextWrapping="Wrap" TextAlignment="Center"/>
+                    <Button Content="Close" HorizontalAlignment="Center" Click="ClosePopup"/>
+                </StackPanel>
+            </Border>
+        </Popup>
+        
+    </Grid>
+</UserControl>
